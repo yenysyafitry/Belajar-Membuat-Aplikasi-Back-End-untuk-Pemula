@@ -10,6 +10,40 @@ Lalu di mana peran Back-End? Karena Anda konsumen, tentu peran Back-End tak terl
 
 ### Server
 <p align="justify">Meskipun Back-End dan Front-End terpisah dalam hal peran dan konsentrasi, namun keduanya harus saling terhubung secara lancar (seamless) agar aplikasi dapat berjalan dengan baik.Pada kedai kopi, penghubung itu adalah seorang pelayan. Pelayan mencatat pesanan yang Anda inginkan kemudian mengirimnya ke barista. Setelah barista selesai membuat kopi, pelayan juga yang mengantarkan kopi dari barista ke meja Anda. Semua transaksi yang terjadi menggunakan perantara. Sebagai pelanggan, Anda tidak bisa masuk ke dapur dan meminta kopi langsung ke barista, karena hal tersebut tentu menyalahi prosedur.</br></br>
-Begitu pula dengan transaksi yang terjadi pada sistem aplikasi. Kita harus merancang sistem aplikasi dengan prosedur yang benar. Transaksi yang dilakukan Back-End ke Front-End harus melalui perantara. Front-End tidak boleh memiliki akses terhadap database secara langsung, begitu pula dengan Back-End yang sama sekali tidak boleh diakses secara langsung oleh pengguna (end-user). Pada sistem aplikasi, perantara tersebut dinamakan “server” yang posisinya serupa pelayan di kedai kopi.</br>
-<img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103282214562ca5be6287f6943d4bfa480b84f66d25.png">|
+Begitu pula dengan transaksi yang terjadi pada sistem aplikasi. Kita harus merancang sistem aplikasi dengan prosedur yang benar. Transaksi yang dilakukan Back-End ke Front-End harus melalui perantara. Front-End tidak boleh memiliki akses terhadap database secara langsung, begitu pula dengan Back-End yang sama sekali tidak boleh diakses secara langsung oleh pengguna (end-user). Pada sistem aplikasi, perantara tersebut dinamakan “server” yang posisinya serupa pelayan di kedai kopi.</br></p>
+<img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103282214562ca5be6287f6943d4bfa480b84f66d25.png">
 
+### Apa itu Server?
+<p align="justify">Server merupakan sebuah sistem yang dapat menyediakan sumber daya berupa data, layanan, atau program untuk disajikan ke komputer lain. Pengertian dari server bukanlah sebuah perangkat keras ataupun komputer, namun server sendiri lebih merujuk kepada sistem yang dapat membuat perangkat (termasuk komputer) dapat melayani sebuah permintaan dari perangkat lain. Jika diterjemahkan ke dalam Bahasa Indonesia, server memang berarti penyaji, atau pelayan. </br></br>
+Server bertugas untuk melayani sebuah layanan (services) atau jasa. Dalam dunia komputer ada banyak service yang dapat dilayani oleh server. Berikut beberapa tipe server sesuai dengan layanan yang baik untuk Anda ketahui.</p>
+<ol align="justify"><li>File Server : melayani penyimpanan dan pendistribusian berkas.</li>
+<li>Application Server : melayani hosting sebuah program atau aplikasi.</li>
+<li>DNS Server : mengubah nama domain (contoh: dicoding.com) ke dalam bentuk IP Address (contoh: 75.2.21.170).</li>
+<li>Web Server : melayani hosting sebuah program atau aplikasi (seperti Application Server) yang dapat diakses oleh client melalui internet maupun intranet.</li>
+<li>Database Server : melayani penyimpanan dan pendistribusian data terstruktur.</li></ol>
+
+### Web Server dan Web Service
+<p align="justify"><b>Web Server</b> : Server yang dapat menjalankan program dan dapat diakses melalui internet atau intranet. <b>Web Service </b>: Program yang dijalankan di web server agar kebutuhan bisnis terpenuhi. Web service berjalan di dalam web server sehingga ia dapat diakses melalui internet. Melalui web service inilah aplikasi Front-End (client) dan Back-End dapat bertransaksi.</p>
+
+### Komunikasi Client-Server
+<p align="justify"><b>HTTP/HTTPS</b> merupakan salah satu protokol yang dapat digunakan untuk berinteraksi dengan web server. Protokol tersebut terkenal dengan pola request-response, artinya untuk mendapatkan sesuatu (response) kita perlu melakukan permintaan terlebih dahulu (request). Lagi-lagi ini menjadi pola yang sama ketika kita hendak memesan kopi di kedai kopi.</br></br>
+Ketika Anda ingin membeli kopi, tentu kopi yang diinginkan tidak secara ajaib datang sendiri. Anda sebagai pelanggan perlu mendatangi kasir atau pelayan untuk meminta (request) kopi yang diinginkan, pelayan meneruskan permintaan Anda ke barista, kemudian barista membuatkan kopi, dan memberikannya kembali (respons) ke pelayan untuk dihidangkan kepada Anda.</p>
+<img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/2021032822185030c44bb079d1e9cbf90f94695bab4bba.png">
+<p align="justify">Pola yang sama dengan komunikasi client dengan server (untuk memudahkan pemahaman, sebutlah client adalah Front-End, server adalah Back-End) bila menggunakan protokol HTTP/S. Server tidak akan mengirimkan data apa pun apabila tidak ada permintaan dari client. Ketika client meminta sesuatu, barulah server akan menanggapi.</p>
+<img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103282219021e4f35ec4c61af5791fb99152a1df7e9.png">
+<p align="justify">protokol HTTP di mana request yang diajukan client harus memiliki informasi-informasi yang cukup agar dapat dieksekusi oleh server. Informasi pada request dapat mengandung:</p><ol align="justify"><li>
+Request line : berisikan method/verb seperti GET (mengambil data), POST (menambahkan/mengirim data), PUT (memperbaharui data), atau DELETE (menghapus data); path atau alamat yang diminta; dan versi HTTP yang digunakan.</li>
+<li>Header : memuat informasi yang dilampirkan terkait request seperti format dokumen (contoh application/json, text/html, dsb), kunci akses, dsb.</li>
+<li>Body (opsional) : mengandung data yang dibutuhkan oleh server, bisa dalam bentuk teks, JSON, dll. Body tidak wajib dilampirkan bila server tidak membutuhkan data apapun.</li></ol>
+
+<p align="justify">Apabila informasi yang dilampirkan pada request tidak jelas/sesuai, maka server akan menolaknya dengan respons negatif. Respons negatif? Apa itu?
+Setiap request yang dilakukan, baik dengan informasi yang sesuai ataupun tidak, akan mendapatkan respons. Respons atau tanggapan yang dikirimkan dari server untuk client juga mengandung informasi. Berikut beberapa informasi yang dilampirkan oleh respons</p>
+<ol align="justify"><li>
+Status line : berisikan HTTP versi yang digunakan; status code berupa tiga digit angka yang menandakan keberhasilan dari permintaan; reason phrase atau status text yang merupakan pesan berdasarkan status code dalam bentuk teks sehingga lebih mudah dimengerti.</li>
+<li>Header : mengandung informasi yang dilampirkan terkait response seperti format dokumen.</li>
+<li>Body (opsional, namun biasanya selalu dilampirkan) : memuat data yang dikirimkan oleh server. Data dapat berupa HTML, JSON, gambar, dsb</li></ol>
+
+<p align="justify">Respons negatif merupakan respons dari server ketika sebuah permintaan dari client gagal dipenuhi. Sama seperti di dunia nyata, ketika kita meminta kopi tubruk di kedai, namun permintaan kita tidak dapat kedai kopi penuhi sebab alasan teknis. Alih-alih mendapatkan kopi kita hanya mendapatkan pesan “maaf stok kopi habis” atau “maaf mesin kopi sedang rusak.”</br></br>
+Begitu pula dengan protokol HTTP. Bila kita meminta sesuatu yang tidak dapat server proses, maka kita tidak akan mendapatkan data yang diinginkan. Server akan memberikan respons negatif dengan alasan mengapa ia tidak bisa memenuhi permintaannya, contohnya seperti “Not Found”, “Bad Request” atau pesan lainnya. </br></br>Kita dapat mengetahui sebuah request berhasil atau tidak melalui status code yang dikirim oleh response. Sebuah request berhasil bila status code response diawali dengan huruf 1, 2 atau 3, selain itu request gagal dieksekusi.</p>
+
+<p align="justify"><b>cURL atau Client URL </b>merupakan software berbasis command line yang dapat melakukan transaksi data melalui beberapa protokol internet, salah satunya HTTP/S. cURL dapat diakses secara langsung tanpa proses install melalui Terminal (Linux dan Mac) atau CMD (Windows)</p>
