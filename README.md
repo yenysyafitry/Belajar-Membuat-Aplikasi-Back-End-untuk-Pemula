@@ -46,4 +46,180 @@ Status line : berisikan HTTP versi yang digunakan; status code berupa tiga digit
 <p align="justify">Respons negatif merupakan respons dari server ketika sebuah permintaan dari client gagal dipenuhi. Sama seperti di dunia nyata, ketika kita meminta kopi tubruk di kedai, namun permintaan kita tidak dapat kedai kopi penuhi sebab alasan teknis. Alih-alih mendapatkan kopi kita hanya mendapatkan pesan “maaf stok kopi habis” atau “maaf mesin kopi sedang rusak.”</br></br>
 Begitu pula dengan protokol HTTP. Bila kita meminta sesuatu yang tidak dapat server proses, maka kita tidak akan mendapatkan data yang diinginkan. Server akan memberikan respons negatif dengan alasan mengapa ia tidak bisa memenuhi permintaannya, contohnya seperti “Not Found”, “Bad Request” atau pesan lainnya. </br></br>Kita dapat mengetahui sebuah request berhasil atau tidak melalui status code yang dikirim oleh response. Sebuah request berhasil bila status code response diawali dengan huruf 1, 2 atau 3, selain itu request gagal dieksekusi.</p>
 
-<p align="justify"><b>cURL atau Client URL </b>merupakan software berbasis command line yang dapat melakukan transaksi data melalui beberapa protokol internet, salah satunya HTTP/S. cURL dapat diakses secara langsung tanpa proses install melalui Terminal (Linux dan Mac) atau CMD (Windows)</p>
+<p align="justify"><b>cURL atau Client URL </b>merupakan software berbasis command line yang dapat melakukan transaksi data melalui beberapa protokol internet, salah satunya HTTP/S. cURL dapat diakses secara langsung tanpa proses install melalui Terminal (Linux dan Mac) atau CMD (Windows)</br></br>
+Kita akan melakukan tiga skenario berikut:</p>
+<ol align="justify"><li>
+Meminta daftar kopi tersedia.</li>
+<li>Membeli kopi yang tersedia.</li>
+<li>Membeli kopi yang tidak tersedia.</li></ol>
+
+<p align="justify">Masuk ke skenario pertama, buatlah request untuk mendapatkan daftar kopi yang tersedia, tulislah kode berikut pada CMD atau Terminal Anda.</br></br>
+<i>curl -X GET https://coffee-api.dicoding.dev/coffees -i</i></br></br>
+Kita bedah kodenya yuk: </p>
+<ol align="justify"><li>
+curl : merupakan perintah untuk menggunakan program cURL pada Terminal atau CMD.</li>
+<li>-X GET : menetapkan HTTP method/verb yang kita gunakan. GET berarti kita ingin mendapatkan sebuah data.</li>
+<li>https://coffee-api.dicoding.dev/coffees : merupakan alamat request yang dituju.</li>
+<li>-i : memberikan informasi detail terhadap response yang diberikan (HTTP response headers).</li></ol>
+
+<p align="justify">Setelah menuliskan kode tersebut, tekan enter. Anda akan mendapatkan respons dari web server seperti ini:</p>
+  
+  ```plantuml
+  HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Vary: Accept-Encoding
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+ETag: W/"bc-+nGU6AB86aQxzJjdtoq2u1HQvyU"
+X-Cloud-Trace-Context: 15ccf145d9c0d899c01b59c50e0f2e31;o=1
+Date: Sun, 03 Jan 2021 00:41:28 GMT
+Server: Google Frontend
+Content-Length: 188
+Alt-Svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+ {"message":"Berikut daftar kopi yang tersedia","coffees":[{"id":1,"name":"Kopi Tubruk","price":12000},{"id":2,"name":"Kopi Tarik","price":15000},{"id":3,"name":"Kopi Jawa","price":18000}]}
+```
+
+<p align="justify">Voila! Anda berhasil mendapatkan response pertama dari server. Fokus terhadap kode yang ditebalkan yah. Mari kita bedah sekarang.</p>
+<ol align="justify"><li>
+HTTP/1.1 : merupakan HTTP version yang digunakan oleh web server dalam menanggapi permintaan.</li>
+<li>200 : merupakan status code dari request. Karena status code diawali dengan angka 2, berarti request kita berhasil dilakukan.</li>
+<li>OK : merupakan pesan teks dari status code, 200 berarti “OK”.</li>
+<li>Content-Type: application/json; : merupakan tipe konten yang digunakan web server dalam memberikan data. Karena nilainya application/json, itu berarti server menggunakan format json.</li>
+<li>JSON Data (kode di bagian bawah) : merupakan data yang diberikan oleh web server. Kita bisa melihat web server memberikan informasi kopi yang tersedia beserta harganya menggunakan format JSON.</li></ol>
+
+<p align="justify">Lanjut ke skenario kedua yuk. Buat permintaan membeli kopi yang tersedia dengan menuliskan perintah berikut:</p>
+
+```plantuml
+curl -X POST -H "Content-Type: application/json" 
+-d "{\"name\": \"Kopi Tubruk\"}" https://coffee-api.dicoding.dev/transactions -i
+```
+
+<p align="justify">Jika dilihat, kode yang dituliskan memiliki struktur yang sama, namun ada beberapa perbedaan. Mari kita bedah:</p>
+<ol align="justify"><li>
+-X POST : dalam request kali ini kita menggunakan method POST. Karena membeli bukan hanya meminta data, tapi akan mengubah jumlah stok kopi yang ada. Selain itu kita juga melampirkan data berupa kopi apa yang akan dipesan. Sehingga tidak masuk akal bila kita menggunakan GET request.</li>
+<li>-H “Content-Type: application/json” : Menetapkan nilai “Content-Type: application/json” pada Header request. Fungsinya untuk memberitahu server bahwa kita melampirkan data dalam bentuk JSON.</li>
+<li>-d <JSON Content> : merupakan data yang dilampirkan pada request. Data ini berformat JSON dan memiliki informasi kopi apa yang ingin dipesan.</li>
+<li>https://coffee-api.dicoding.dev/transactions : Merupakan alamat request yang dituju untuk membeli kopi.</li></ol>
+
+<p align="justify">Setelah menuliskan perintah di atas. Anda akan mendapatkan respons seperti ini dari web server:</p>
+
+```plantuml
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Vary: Accept-Encoding
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+ETag: W/"2e-a65Yb2UyToE5h4vnZNUuPzDX90c"
+X-Cloud-Trace-Context: 59cdf8e8238b684818cd4315bd9b7ef6;o=1
+Date: Sun, 03 Jan 2021 02:45:21 GMT
+Server: Google Frontend
+Content-Length: 46
+Alt-Svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; 
+ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+{"message":"Pesanan berhasil!","success":true}
+```
+
+<p align="justify">Lanjut ke skenario terakhir, yakni membeli kopi yang tidak tersedia. Tuliskan perintah yang sama seperti sebelumnya. Namun dengan tipe kopi yang tentunya tidak tersedia pada daftar. Contohnya Kopi Luwak.</p>
+
+```plantuml
+curl -X POST -H "Content-Type: application/json" 
+-d "{\"name\": \"Kopi Luwak\"}" https://coffee-api.dicoding.dev/transactions -i
+```
+
+<p align="justify">Silakan tulis perintahnya, kemudian tekan enter. Kali ini Anda akan mendapatkan response seperti ini.</p>
+
+```plantuml
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Vary: Accept-Encoding
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+ETag: W/"42-WP2gTxT4eLOmvee44xnev3QcFoE"
+X-Cloud-Trace-Context: cee054c7dd8147e341d0c509ca7f6768;o=1
+Date: Sun, 03 Jan 2021 03:01:51 GMT
+Server: Google Frontend
+Content-Length: 66
+Alt-Svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; 
+ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+```
+
+<p align="justify">Lihat status code-nya, kali ini Anda mendapatkan respons negatif lho! Request yang Anda lakukan tidak dapat diproses oleh server karena kopi luwak tidak ada (not found) pada daftar kopi. Nah melalui latihan tadi, semoga Anda semakin mengerti yah bagaimana client dan server berkomunikasi melalui protokol HTTP.
+{"message":"Pesanan gagal, kopi tidak ditemukan!","success":false}</p>
+
+<p align="justify"><b>REST Web Service</b></br>
+Dalam mengembangkan web service Anda perlu menetapkan arsitektur apa yang hendak diadaptasi. Dengan menetapkan arsitektur, client, dan server lebih mudah dalam berkomunikasi karena memiliki pola atau gaya yang konsisten. Salah satu arsitektur web service yang banyak digunakan saat ini adalah REST. </br></br>
+<b>REST atau REpresentational State Transfer</b> adalah salah satu gaya arsitektur yang dapat diadaptasi ketika membangun web service. Arsitektur ini sangat populer digunakan karena pengembangannya yang relatif mudah. REST menggunakan pola request-response dalam berinteraksi, artinya ia memanfaatkan protokol HTTP seperti yang sudah kita pelajari di materi sebelumnya. </br></br>
+Dalam implementasinya arsitektur REST benar-benar memisahkan peran client dan server, bahkan keduanya tidak harus saling mengetahui. Artinya ketika terjadi perubahan besar di sisi client, tidak akan berdampak pada sisi server, begitu juga sebaliknya.</br></br>
+<b>REST API</b>
+Sebagian dari kalian mungkin mengenal REST dengan sebutan RESTful API. Yups, memang benar! RESTful merupakan sebutan untuk web services yang menerapkan arsitektur REST. REST juga merupakan API (application program interface) karena ia digunakan untuk menjembatani antara sistem yang berbeda (client dan server).</br></br>
+<b>API atau Application Program Interface</b> merupakan antarmuka yang menjadi perantara antara sistem aplikasi yang berbeda. API tak hanya dalam bentuk Web Service, bisa saja berupa SDK (Software Development Kit) ataupun lainnya.</br></br>
+Berikut beberapa sifat yang menjadi kunci pada REST API.</p><ol align="justify"><li>
+Client-Server : Ini merupakan hal yang paling mendasar dalam membangun REST API. Server harus bisa merespons permintaan yang dilakukan client, baik itu respons berhasil ataupun gagal. Komunikasi client dan server dilakukan melalui protokol HTTP.</li>
+<li>Stateless : REST API tidak boleh menyimpan keadaan (state) apa pun terkait client. Seluruh state harus tetap disimpan di client. Artinya, tidak ada session di REST API. Permintaan yang dilakukan client harus mengandung informasi yang jelas. Jangan berharap RESTful API akan menyimpan informasi dari permintaan sebelumnya untuk digunakan di permintaan selanjutnya.</li>
+<li>Cacheable : Agar dapat merespons permintaan dengan cepat, sebaiknya REST API menerapkan prinsip cache. Sehingga setiap permintaan tidak melulu mengambil dari database.</li>
+<li>Layered : Ketika REST API server memiliki arsitektur yang kompleks, client seharusnya tidak perlu tahu bagaimana server melayaninya.</li></ol>
+
+<p align="justify">Selain itu, sebelum membangun REST API, kita perlu mengenal dahulu bagaimana konsep-konsep penting yang harus diterapkan dalam membangun arsitektur ini. Apa saja? </br>Singkatnya, ketika membangun REST API kita harus memperhatikan empat poin berikut:</p>
+<ol align="justify"><li>
+Format request dan response.</li>
+<li>HTTP Verbs/Methods.</li>
+<li>HTTP Response code.</li>
+<li>URL Design.</li></ol>
+
+<p align="justify"><b>Format Request dan Response</b></br>
+REST API seringnya menggunakan JavaScript Object Notation atau JSON sebagai format data baik itu pada request ataupun response. JSON merupakan salah satu format standar dalam transaksi data. Bahkan, saat ini JSON menjadi format terpopuler mengalahkan pendahulunya yaitu XML.</br></br>
+Sebenarnya Anda bisa menggunakan XML pada REST API, namun sebaiknya gunakan JSON agar lebih mudah dibaca dan efisien dalam transaksi data. Agar REST API selalu merespons dengan format JSON, pastikan setiap respons terdapat properti Content-Type dengan nilai application/json. Seperti namanya, JSON memiliki struktur seperti JavaScript Object yakni menggunakan key-value. Bedanya, key pada JSON selalu dituliskan menggunakan tanda kutip dua (“”). Value pada JSON dapat menampung nilai primitif seperti string, number, boolean, atau nilai non primitif seperti object atau array. Pada latihan sebelumnya Anda sudah melihat bagaimana bentuk JSON ketika mengirimkan data pembelian kopi dan data pada body respon dari server. Berikut contoh struktur JSON ketika melakukan GET request terhadap url https://coffee-api.dicoding.dev/coffees</p>
+
+
+```plantuml
+{
+  "message": "Berikut daftar kopi yang tersedia",
+  "coffees": [
+    {
+      "id": 1,
+      "name": "Kopi Tubruk",
+      "price": 12000
+    },
+    {
+      "id": 2,
+      "name": "Kopi Tarik",
+      "price": 15000
+    },
+    {
+      "id": 3,
+      "name": "Kopi Jawa",
+      "price": 18000
+    }
+  ]
+}
+```
+
+<p align="justify">Walaupun memiliki nama JavaScript Object Notation, bukan berarti kita harus menggunakan JavaScript untuk mengolah data dengan format JSON. Format JSON dapat digunakan oleh hampir semua bahasa pemrograman yang ada.</br></br>
+<b>HTTP Verbs/Methods</b></br>
+Karena REST API menggunakan protokol HTTP, kita dapat memanfaatkan HTTP verbs untuk menentukan aksi.</br></br>
+GET untuk mendapatkan data, POST untuk mengirimkan data baru, PUT untuk memperbarui data yang ada, dan DELETE untuk menghapus data. Verbs tersebutlah yang umum digunakan dalam operasi CRUD.</br></br>
+<b>HTTP Response Code</b></br>
+Status-Line merupakan salah satu bagian dari HTTP Response. Di dalam status line terdapat response code yang mengindikasikan bahwa permintaan yang client lakukan berhasil atau tidak. Karena itu, ketika membangun REST API kita perlu memperhatikan dan menetapkan response code secara benar.</br></br>
+Status code bernilai 3 digit angka. Pada REST API, berikut nilai-nilai status code yang sering digunakan:</p>
+<ol align="justify"><li>
+200 (OK) - Permintaan client berhasil dijalankan oleh server.</li>
+<li>201 (Created) - Server berhasil membuat/menambahkan resource yang diminta client.</li>
+<li>400 (Bad Request) - Permintaan client gagal dijalankan karena proses validasi input dari client gagal.</li>
+<li>401 (Unauthorized) - Permintaan client gagal dijalankan. Biasanya ini disebabkan karena pengguna belum melakukan proses autentikasi.</li>
+<li>403 (Forbidden) - Permintaan client gagal dijalankan karena ia tidak memiliki hak akses ke resource yang diminta.</li>
+<li>404 (Not Found) - Permintaan client gagal dijalankan karena resource yang diminta tidak ditemukan.</li>
+<li>500 (Internal Server Error) -  Permintaan client gagal dijalankan karena server mengalami eror (membangkitkan Exception).</li></ol>
+
+<p align="justify">Ketika permintaan client gagal dijalankan, kita harus mengembalikan status code yang sesuai dengan kesalahan yang terjadi. Penggunaan response code yang tepat dapat meminimalisir kebingungan client/user dalam memanfaatkan API.</br></br>
+<b>URL Design</b></br>
+URL, Path, atau Endpoint merupakan salah satu bagian terpenting yang harus diperhatikan ketika membangun REST API. Dengan merancang endpoint yang baik, penggunaan API akan lebih mudah dipahami. Dalam merancang endpoint, ikutilah aturan umum atau convention agar penggunaan API kita memiliki standar yang diharapkan oleh banyak developer. Lalu, seperti apa standar dalam merancang endpoint? </br></br>
+<b>Gunakan Kata Sifat daripada Kata Kerja pada Endpoint Path</b></br>
+Hindari penggunaan kata kerja dalam menetapkan nama endpoint (titik akhir path). Contohnya /getArticles atau /addArticles. Karena aksi dapat ditentukan secara jelas melalui HTTP Verb, kita tidak perlu lagi menambahkan kata kerja di endpoint. Dengan adanya HTTP verbs Anda cukup memberikan endpoint GET /articles untuk mendapatkan data artikel atau POST /articles untuk menambahkan artikel.</br></br>
+<b>Gunakan Kata Jamak pada Endpoint untuk Resource Collection</b></br>
+Selalu gunakan kata jamak (plural) saat memberikan nama endpoint. Ini karena jarang ada data yang hanya memiliki satu item. Dengan menggunakan kata jamak, kita menjadi konsisten dengan apa yang ada di database. Karena tabel pada database pun biasanya memiliki lebih dari satu record (data).</br></br>
+Lalu, bagaimana bila ingin mengakses satu data saja? Contohnya mendapatkan satu artikel secara spesifik?</br></br>
+Gunakan path parameter untuk mendapatkan data spesifik. Endpoint /articles/:id merupakan contoh yang baik untuk mendapatkan artikel secara spesifik berdasarkan id. Kita akan membahas dan menggunakan path parameter nanti ketika latihan membuat web server.</br></br>
+<b>Gunakan Endpoint berantai untuk resource yang memiliki hirarki/relasi</b></br>
+Endpoint dari resource yang memiliki hirarki/relasi sebaiknya dituliskan secara berantai. Contohnya untuk mendapatkan daftar komentar dari sebuah artikel, endpoint GET /articles/:id/comments merupakan contoh yang tepat.</br></br>
+Penggunaan endpoint tersebut masuk akal karena untuk mendapatkan comments pada respons, kita perlu tahu komentar pada artikel mana yang akan ditampilkan. Prinsip ini juga memperjelas permintaan dari client hanya dengan melihat endpoint yang dituju,  daripada menggunakan endpoint GET /comments kemudian memberikan nilai id artikel pada request body.</br></br>
+Tidak hanya GET, prinsip ini juga cocok diterapkan pada HTTP verb POST, PUT, maupun DELETE.</p>
