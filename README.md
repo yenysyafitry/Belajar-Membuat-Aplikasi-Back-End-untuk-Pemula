@@ -223,3 +223,16 @@ Gunakan path parameter untuk mendapatkan data spesifik. Endpoint /articles/:id m
 Endpoint dari resource yang memiliki hirarki/relasi sebaiknya dituliskan secara berantai. Contohnya untuk mendapatkan daftar komentar dari sebuah artikel, endpoint GET /articles/:id/comments merupakan contoh yang tepat.</br></br>
 Penggunaan endpoint tersebut masuk akal karena untuk mendapatkan comments pada respons, kita perlu tahu komentar pada artikel mana yang akan ditampilkan. Prinsip ini juga memperjelas permintaan dari client hanya dengan melihat endpoint yang dituju,  daripada menggunakan endpoint GET /comments kemudian memberikan nilai id artikel pada request body.</br></br>
 Tidak hanya GET, prinsip ini juga cocok diterapkan pada HTTP verb POST, PUT, maupun DELETE.</p>
+
+<p align="justify"><b>Tools Belajar Dasar-Dasar Node.js untuk Back-End</b></br>
+Modul kali ini memiliki prasyarat sebelum Anda mengikutinya. Selain kemampuan JavaScript, terdapat dua tools yang perlu Anda siapkan, yakni Text Editor dan Node.js. Bila Anda sudah mengikuti seluruh latihan pada kelas Belajar Dasar Pemrograman JavaScript, tools ini seharusnya sudah terpasang pada komputer Anda. Bila belum, silakan unduh dan pasang dulu yah.</br></br>
+<b>Text Editor</b></br>
+Selama mengikuti kelas ini, kami merekomendasikan Anda untuk menggunakan VSCode. Inilah text editor yang sangat populer dan gratis untuk digunakan. Selain itu, text editor ini memiliki plugin berlimpah yang dapat membuat fungsionalitas menjadi lebih kaya lagi. Visual Studio Code dapat dijalankan pada  sistem operasi Windows, macOS, ataupun Linux. Untuk mengunduhnya, silakan kunjungi laman unduh visual studio code.</br></br>
+<b>Node.js</b></br>
+Pastikan komputer Anda sudah terpasang Node.js, jika belum silakan simak tautan bagaimana cara memasang Node.js pada komputer Anda. Pastikan juga Node.js yang terinstal memiliki versi minimal 12 ke atas. Untuk mengetahui versi Node.js yang Anda pasang, silakan tuliskan perintah ini pada Terminal atau CMD.</br></br>
+
+```plantuml
+node -v
+```
+
+
