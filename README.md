@@ -246,7 +246,7 @@ Namun, bila Anda ingin membangun web server yang kompleks tanpa membutuhkan effo
 <b>Membangun Web Server menggunakan Hapi</b></br>
 <b>Menyiapkan Project</b></br>
 Mari kita awali dengan membuat proyek baru. Silakan buat folder di C -> javascript-projects (Windows) atau home -> javascript-projects (Linux dan macOS) dengan nama “hapi-web-server”.</p>
-<p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/2021030808581482aa4f57ef392e47c0f741c117c79558.png.png"></br>
+<p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/2021030808581482aa4f57ef392e47c0f741c117c79558.png"></br>
  <p align="justify"> Buka folder menggunakan VSCode, kemudian inisialisasi proyek pada Terminal dengan menggunakan perintah:</p>
  
 ```plantuml
