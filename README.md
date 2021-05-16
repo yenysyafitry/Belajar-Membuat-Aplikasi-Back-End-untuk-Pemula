@@ -358,3 +358,27 @@ node index.js
 
 <p align="justify">Node.js pun akan mengeksekusi berkas ‘index.js’. Bila Anda menuliskan kode seperti yang dicontohkan di atas, maka akan muncul teks ‘Hello JavaScript’ pada console.</p>
 <p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103072122113b419a5e06a8fa864c9f0d5db55591c0.png"></p>
+<p align="justify">Node.js Global Object</br>
+JavaScript hanyalah bahasa pemrograman. Ia tidak mengetahui apakah Anda menjalankannya menggunakan browser atau Node.js. Di browser, JavaScript dapat mengontrol fungsionalitas browser seperti mengunjungi halaman, memuat ulang, menutup tabs, serta menampilkan alert dialog. JavaScript mampu melakukan itu karena browser menambahkan objek window pada JavaScript.</br></br>
+Di Node.js pun demikian, ia menambahkan objek global guna memberikan fungsionalitas lebih pada JavaScript. Hal ini bertujuan untuk mendukung pengembangan pada environment-nya. Contoh, melalui objek global kita dapat melihat berapa CPU yang digunakan pada komputer, modularisasi berkas JavaScript, menampilkan nilai pada console, dan hal lainnya.</br></br>
+Objek window pada browser dan objek global pada Node.js merupakan Global Object. Seluruh fungsi atau properti yang menjadi member dari global object dapat diakses di mana saja alias memiliki cakupan global. Pada Node.js Anda bisa melihat apa saja yang termasuk member dari global objek dengan menggunakan kode berikut:</p>
+
+```plantuml
+Object.getOwnPropertyNames(global);
+```
+
+<p align="justify">Coba jalankan pada REPL. Ia akan mengembalikan semua member-nya.</p>
+<p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103072125327328c5e8400805e3501eafb2ed05c284.png"></p>
+<p align="justify">
+Banyak sekali yah member dari global objek. Namun dilansir dari website Node.js, sebenarnya mereka hanya menambahkan beberapa objek saja. Objek tersebut dinamakan dengan ‘true globals’. </br></br>
+Berikut adalah daftarnya:</br>
+1.global : Global namespace. Member apa pun di dalam object ini dapat diakses pada cakupan global.</br>
+2.process : menyediakan interaksi dengan proses Node.js yang berjalan.</br>
+3.console : menyediakan berbagai fungsionalitas STDIO.</br>
+4.setTimeout, clearTimeout, setInterval, clearInterval.</br></br>
+Ada juga objek yang merupakan ‘pseudo-globals’ atau objek global semu. Objek ini tidak terlihat bila dicetak menggunakan Object.getOwnPropertyName(global) sebab ia bukan member langsung dari objek global, melainkan diturunkan dari cakupan module. Karena pada Node.js semua berkas JavaScript adalah module [3], jadi pseudo-globals dapat diakses layaknya global objek.</br></br>
+Berikut adalah daftarnya:</p><ol><li>
+module : digunakan untuk sistem modularisasi pada Node.js.</li>
+<li>__filename : keyword untuk mendapatkan lokasi berkas JavaScript yang dieksekusi. Keyword ini tidak tersedia pada Node.js REPL.</li>
+<li>__dirname : keyword untuk mendapatkan root directory dari berkas JavaScript yang dieksekusi.</li>
+<li>require : digunakan untuk mengimpor module JavaScript.</li></ol>
