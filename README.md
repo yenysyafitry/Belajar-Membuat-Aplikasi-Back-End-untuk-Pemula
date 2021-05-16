@@ -234,4 +234,36 @@ Pastikan komputer Anda sudah terpasang Node.js, jika belum silakan simak tautan 
 node -v
 ```
 
+<p align="justify"><b>Apa itu Web Framework?</b></br>
+Web Framework adalah sebuah kerangka yang dapat membantu mempermudah pengembangan web termasuk dalam membuat web server. Dengan menggunakan framework, penulisan kode akan lebih terstruktur, mudah dipelihara, dan gampang dikembangkan.  </br></br>
+Web Framework menyediakan sekumpulan tools dan library yang dapat menyederhanakan hal-hal yang sering dilakukan dalam pengembangan web, seperti pembuatan server, routing, menangani permintaan, interaksi dengan database, otorisasi, hingga meningkatkan ketahanan web dari serangan luar. </br></br>
+<b>Expressjs</b> merupakan web framework tertua dan terpopuler di Node.js saat ini. Framework ini sangat ringan, mudah diintegrasikan dengan aplikasi web front-end, dan penulisan kodenya tidak jauh beda dengan Node.js native.  </br></br>
+Namun karena sifat ringannya tersebut, ia menjadi framework yang unopinionated alias tidak memiliki aturan untuk menggunakannya. Express tidak menyediakan struktur atau kerangka kerja yang baku untuk diikuti oleh developer. Sehingga, developer menjadi sulit menentukan seperti apa kode yang optimal. </br></br>
+Framework lainnya seperti Hapi menyediakan environment yang lengkap untuk mengembangkan web server yang kompleks. Bila menggunakan Hapi, kita tak perlu tools lain untuk menerapkan layer authentication, tokenize, cors, dan lain sebagainya. </br></br>
+Kelemahan Hapi adalah abstraksinya yang terlalu jauh dari Node.js native. Kita perlu belajar secara dalam, untuk menguasai framework ini. Penggunaan framework menjadi pilihan personal. Salah satu faktornya adalah kasus yang hendak Anda hadapi. Ketika ingin membangun server yang sederhana, katakanlah untuk mendukung aplikasi front-end di-render di sisi server, express adalah pilihan yang tepat. </br></br>
+Namun, bila Anda ingin membangun web server yang kompleks tanpa membutuhkan effort yang besar, Hapi adalah pilihan yang tepat. Kita akan membangun web server dengan arsitektur REST yang kompleks ke depannya. Agar Anda selalu “Hapi” ketika mengikuti alur belajar, kita akan gunakan Hapi dalam membangun web server.
+</br></br>Ketahuilah bahwa Hapi memiliki environment yang cukup luas. Kelas ini tidak akan mengajarkan secara dalam tentang API yang ada di Hapi, melainkan hanya fitur-fitur yang menjadi dasar pembuatan REST API. Jadi, bila Anda ingin mendalami terkait framework Hapi, sempatkan waktu untuk eksplorasi di dokumentasi Hapi yang disediakan yah. </br></br>
+<b>Membangun Web Server menggunakan Hapi</b></br>
+<b>Menyiapkan Project</b></br>
+Mari kita awali dengan membuat proyek baru. Silakan buat folder di C -> javascript-projects (Windows) atau home -> javascript-projects (Linux dan macOS) dengan nama “hapi-web-server”.</p>
+<p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/2021030808581482aa4f57ef392e47c0f741c117c79558.png.png"></br>
+ <p align="justify"> Buka folder menggunakan VSCode, kemudian inisialisasi proyek pada Terminal dengan menggunakan perintah:</p>
+ 
+```plantuml
+npm init --y
+```
 
+<p align="justify">Lanjut, kita atur NPM runner pada package.json menjadi seperti ini:</p>
+
+```plantuml
+"scripts": {
+   "start": "node server.js"
+},
+```
+
+<p align="justify">Lalu, buatlah berkas JavaScript baru dengan nama server.js. Kemudian, tuliskan kode berikut:</p>
+server.js
+
+```plantuml
+console.log('Halo, kita akan belajar membuat server menggunakan Hapi');
+```
