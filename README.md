@@ -371,11 +371,11 @@ Object.getOwnPropertyNames(global);
 <p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103072125327328c5e8400805e3501eafb2ed05c284.png"></p>
 <p align="justify">
 Banyak sekali yah member dari global objek. Namun dilansir dari website Node.js, sebenarnya mereka hanya menambahkan beberapa objek saja. Objek tersebut dinamakan dengan ‘true globals’. </br></br>
-Berikut adalah daftarnya:</br>
-1.global : Global namespace. Member apa pun di dalam object ini dapat diakses pada cakupan global.</br>
-2.process : menyediakan interaksi dengan proses Node.js yang berjalan.</br>
-3.console : menyediakan berbagai fungsionalitas STDIO.</br>
-4.setTimeout, clearTimeout, setInterval, clearInterval.</br></br>
+Berikut adalah daftarnya:</p>
+<ol><li>global : Global namespace. Member apa pun di dalam object ini dapat diakses pada cakupan global.</li>
+<li>process : menyediakan interaksi dengan proses Node.js yang berjalan.</li>
+<li>console : menyediakan berbagai fungsionalitas STDIO.</li>
+<li>setTimeout, clearTimeout, setInterval, clearInterval.</ol>
 Ada juga objek yang merupakan ‘pseudo-globals’ atau objek global semu. Objek ini tidak terlihat bila dicetak menggunakan Object.getOwnPropertyName(global) sebab ia bukan member langsung dari objek global, melainkan diturunkan dari cakupan module. Karena pada Node.js semua berkas JavaScript adalah module [3], jadi pseudo-globals dapat diakses layaknya global objek.</br></br>
 Berikut adalah daftarnya:</p><ol><li>
 module : digunakan untuk sistem modularisasi pada Node.js.</li>
