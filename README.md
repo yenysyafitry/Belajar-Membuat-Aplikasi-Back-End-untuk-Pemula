@@ -382,3 +382,135 @@ module : digunakan untuk sistem modularisasi pada Node.js.</li>
 <li>__filename : keyword untuk mendapatkan lokasi berkas JavaScript yang dieksekusi. Keyword ini tidak tersedia pada Node.js REPL.</li>
 <li>__dirname : keyword untuk mendapatkan root directory dari berkas JavaScript yang dieksekusi.</li>
 <li>require : digunakan untuk mengimpor module JavaScript.</li></ol>
+
+<p align="justify"><b>Process Object</b></br>
+Salah satu global objek yang penting untuk diketahui adalah process. Dalam ilmu komputer, process adalah sebuah program yang dijalankan pada satu atau lebih thread [4]. Anda bisa melihat proses yang sedang berjalan pada komputer Anda melalui Task Manager (Windows), System Monitor (Ubuntu), atau Activity Monitor (macOS).</p>
+<p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103072129362a0d00f126594595fca14c0e99b9cde7.png"></p>
+
+<p align="justify">Pada Node.js, global objek process memiliki fungsi dan properti yang dapat memberikan informasi mengenai proses yang sedang berjalan. Salah satu yang sering digunakan adalah properti process.env. Melalui properti ini kita dapat menyimpan nilai atau mendapatkan informasi mengenai environment yang digunakan selama proses sedang berlangsung. Contoh, process.env memiliki properti process.env.PWD yang menyediakan informasi mengenai lokasi di mana proses dijalankan; properti process.env.USER menyimpan informasi nama user pada komputer Anda; dan masih banyak properti lainnya. Anda bisa lihat daftar lengkap properti yang ada pada halaman dokumentasi Node.js mengenai process.env.</br></br>
+Anda juga bisa secara manual menyimpan nilai di dalam process.env. Hal ini berguna untuk menentukan alur code seperti if-else dalam program berdasarkan environment yang Anda berikan. Contohnya, ketika Anda ingin nilai variabel host berbeda di kala pengembangan (development) dan produksi (production), Anda bisa membuat properti NODE_ENV pada process.env. Jadi, Anda bisa menentukan nilai host berdasarkan kondisi NODE_ENV.</p>
+
+app.js
+
+```plantuml
+const server = new Server({
+    host: process.env.NODE_ENV !== 'production' ? 'localhost' : 'dicoding.com',
+});
+```
+
+<p align="justify">Untuk memberikan nilai pada properti process.env, kita dapat memberikannya ketika mengeksekusi berkas JavaScript. Caranya seperti ini:</p>
+
+Linux dan macOS
+
+```plantuml
+NODE_ENV=production node app.js
+```
+
+Windows CMD
+
+```plantuml
+SET NODE_ENV=production && node app.js
+```
+
+<p align="justify">Nilai yang ada pada process.env hanya dapat diakses di dalam cakupan proses Node.js. Itu berarti Anda tidak dapat menggunakan nilainya pada program lain seperti menampilkan nilainya melalui program echo.</p>
+
+```plantuml
+// perintah ini tidak akan berjalan
+node -e 'process.env.foo = "bar"' && echo $foo
+```
+
+<p align="justify">Selain untuk menetapkan dan mendapatkan informasi mengenai environment, objek process memiliki kegunaan lain. Salah satunya adalah mendapatkan informasi tentang penggunaan CPU ketika proses berjalan. Anda dapat mengakses informasi tersebut melalui fungsi process.memoryUsage().</p>
+
+```plantuml
+const cpuInformation = process.memoryUsage();
+ 
+console.log(cpuInformation);
+ 
+/* output
+{
+  rss: 14569472,
+  heapTotal: 2654208,
+  heapUsed: 1788896,
+  external: 855681,
+  arrayBuffers: 9898
+}
+*/
+```
+
+<p align="justify">Yang terakhir dan tak kalah pentingnya adalah properti process.argv. Properti ini dapat menampung nilai baris perintah dalam bentuk array ketika menjalankan proses. Contoh jika kita menjalankan baris perintah berikut:</p>
+
+```plantuml
+node app.js harry potter
+```
+
+<p align="justify">Maka array process.argv akan bernilai:</p>
+<ol align="justify"><li>Elemen pertama : Alamat (path) lengkap dari lokasi node yang menjalankan prosesnya. </li>
+<li>Element kedua : Alamat (path) berkas JavaScript yang dieksekusi (app.js)</li>
+<li>Element ketiga : “harry”</li>
+<li>Element keempat : “potter”</li></ol>
+
+<p align="justify">Bila app.js memiliki kode seperti ini:</p>
+
+app.js
+
+```plantuml
+const firstName = process.argv[2];
+const lastName = process.argv[3];
+ 
+console.log(`Hello ${firstName} ${lastName}`);
+```
+
+<p align="justify">Maka output yang dihasilkan tampak seperti ini:</p>
+
+```plantuml
+Hello harry potter
+```
+
+<p align="justify">Kita hanya membahas sedikit tentang properti dan fungsi yang ada pada process objek. Anda bisa mendalaminya dengan membaca dokumentasi tentang objek process.</br></br>
+Latihan: Process Object</br>
+Anda sudah mengenal process object yang ada di Node.js. Agar lebih paham lagi, sekarang giliran Anda untuk coba sendiri penggunaan dari beberapa global object yang ada di Node.js.</br></br>
+Untuk latihan kali ini, buatlah berkas index.js baru di dalam folder baru process-object pada proyek nodejs-basic.</p>
+
+<p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/20210307213645166580510ac3aea62e996cd4d0bf1920.png"></p>
+<p align="justify">Kemudian, tuliskan starter code berikut pada index.js.</p>
+
+index.js
+
+
+```plantuml
+const initialMemoryUsage = // TODO 1
+const yourName = // TODO 2
+const environment = // TODO 3
+ 
+for(let i = 0; i <= 10000; i++) {
+// Proses looping ini akan membuat penggunaan memori naik
+}
+ 
+const currentMemoryUsage = // TODO 4
+ 
+console.log(`Hai, ${yourName}`);
+console.log(`Mode environment: ${environment}`)
+console.log(`Penggunaan memori dari ${initialMemoryUsage} naik ke ${currentMemoryUsage}`);
+```
+
+<p align="justify">Selesaikan kode yang ditandai TODO dengan ketentuan berikut:</p>
+<ol align="justify"><li>TODO 1 : Isi dengan nilai heapUsed dari instance process.memoryUsage.</li>
+<li>TODO 2 : Isi dengan nilai index ke-2 dari process.argv.</li>
+<li>TODO 3 : Isi dengan nilai NODE_ENV dari process.env.</li>
+<li>TODO 4 : Isi dengan nilai heapUsed dari instance process.memoryUsage.</li></ol>
+<p align="justify">Setelah mengerjakan seluruh TODO, eksekusi berkas JavaScript dengan perintah: </p>
+
+Windows CMD
+
+```plantuml
+SET NODE_ENV=development && node ./process-object/index.js <Nama Anda> 
+```
+
+Linux dan macOS Terminal
+
+```plantuml
+NODE_ENV=development node ./process-object/index.js <Nama Anda>
+```
+
+<p align="justify">Ganti <Nama Anda> dengan nama depan Anda. Bila TODO berhasil dikerjakan dengan baik, maka console akan menghasilkan output:</p>
+  <p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/20210307213958e0df3592e651d0dba99c652767d38eb5.png"></p>
