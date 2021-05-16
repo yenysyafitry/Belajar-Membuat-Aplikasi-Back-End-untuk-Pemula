@@ -64,8 +64,7 @@ curl : merupakan perintah untuk menggunakan program cURL pada Terminal atau CMD.
 
 <p align="justify">Setelah menuliskan kode tersebut, tekan enter. Anda akan mendapatkan respons dari web server seperti ini:</p>
   
-  ```plantuml
-  HTTP/1.1 200 OK
+<div class="highlight highlight-text-html-php position-relative" data-snippet-clipboard-copy-content="HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 Vary: Accept-Encoding
 X-Powered-By: Express
@@ -77,7 +76,7 @@ Server: Google Frontend
 Content-Length: 188
 Alt-Svc: h3-29=":443"; ma=2592000,h3-T051=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
  {"message":"Berikut daftar kopi yang tersedia","coffees":[{"id":1,"name":"Kopi Tubruk","price":12000},{"id":2,"name":"Kopi Tarik","price":15000},{"id":3,"name":"Kopi Jawa","price":18000}]}
-```
+">
 
 <p align="justify">Voila! Anda berhasil mendapatkan response pertama dari server. Fokus terhadap kode yang ditebalkan yah. Mari kita bedah sekarang.</p>
 <ol align="justify"><li>
