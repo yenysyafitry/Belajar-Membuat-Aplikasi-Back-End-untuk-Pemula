@@ -244,7 +244,7 @@ Kelemahan Hapi adalah abstraksinya yang terlalu jauh dari Node.js native. Kita p
 Namun, bila Anda ingin membangun web server yang kompleks tanpa membutuhkan effort yang besar, Hapi adalah pilihan yang tepat. Kita akan membangun web server dengan arsitektur REST yang kompleks ke depannya. Agar Anda selalu “Hapi” ketika mengikuti alur belajar, kita akan gunakan Hapi dalam membangun web server.
 </br></br>Ketahuilah bahwa Hapi memiliki environment yang cukup luas. Kelas ini tidak akan mengajarkan secara dalam tentang API yang ada di Hapi, melainkan hanya fitur-fitur yang menjadi dasar pembuatan REST API. Jadi, bila Anda ingin mendalami terkait framework Hapi, sempatkan waktu untuk eksplorasi di dokumentasi Hapi yang disediakan yah. </br></br>
 <b>Membangun Web Server menggunakan Hapi</b></br>
-<b>Menyiapkan Project</b></br>
+<b>Menyiapkan Project</b></br></br>
 Mari kita awali dengan membuat proyek baru. Silakan buat folder di C -> javascript-projects (Windows) atau home -> javascript-projects (Linux dan macOS) dengan nama “hapi-web-server”.</p>
 <p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/2021030808581482aa4f57ef392e47c0f741c117c79558.png"></br>
  <p align="justify"> Buka folder menggunakan VSCode, kemudian inisialisasi proyek pada Terminal dengan menggunakan perintah:</p>
@@ -267,3 +267,14 @@ server.js
 ```plantuml
 console.log('Halo, kita akan belajar membuat server menggunakan Hapi');
 ```
+
+<p align="justify">Simpan perubahan pada berkas server.js dan coba jalankan perintah berikut pada Terminal:</p>
+
+```plantuml
+npm run start
+```
+
+<p align="justify">Bila Anda melihat pesan “Halo, kita akan belajar membuat server menggunakan Hapi”, maka proyek telah siap digunakan.
+</p>
+
+<p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/202103080900413ad7b514c3d8e08284204e68ef0b8521.png"></br>
