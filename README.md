@@ -514,3 +514,60 @@ NODE_ENV=development node ./process-object/index.js <Nama Anda>
 
 <p align="justify">Ganti <Nama Anda> dengan nama depan Anda. Bila TODO berhasil dikerjakan dengan baik, maka console akan menghasilkan output:</p>
   <p align="center"><img src="https://github.com/yenysyafitry/Belajar-Membuat-Aplikasi-Back-End-untuk-Pemula/blob/main/20210307213958e0df3592e651d0dba99c652767d38eb5.png"></p>
+  
+<p align="justify">Modularization
+Semakin kompleks program yang dikembangkan, semakin kompleks juga kode yang dituliskan. Jika kode dituliskan dalam satu berkas saja, maka akan sangat sulit untuk membaca serta memelihara kode tersebut. Idealnya, satu berkas JavaScript hanya memiliki satu tanggung jawab saja. Bila lebih dari satu, itu berarti Anda perlu berkenalan dengan modularisasi.</br></br>
+Modularisasi dalam pemrograman merupakan teknik pemisahan kode menjadi modul-modul yang bersifat independen namun bisa saling digunakan untuk membentuk suatu program yang kompleks. Pemisahan kode menjadi modul-modul terpisah inilah yang dapat membuat kode JavaScript lebih mudah diorganisir. Pada Node.js, setiap berkas JavaScript adalah modul. Anda bisa membagikan nilai variabel, objek, class, atau apa pun itu antar modul. Untuk melakukannya, Anda perlu mengekspor nilai pada module tersebut. Untuk mengekspornya, simpanlah nilai tersebut pada properti module.exports. Contoh seperti ini:</p>
+
+coffee.js
+
+```plantuml
+const coffee = {
+    name: 'Tubruk',
+    price: 15000,
+}
+module.exports = coffee;
+```
+
+<p align="justify">Setelah itu nilai coffee dapat digunakan pada berkas JavaScript lain dengan cara mengimpor nilainya melalui fungsi global require().</p>
+
+app.js
+
+```plantuml
+const coffee = require('./coffee');
+ 
+console.log(coffee);
+ 
+/**
+ * node app.js
+ *
+ * output:
+ * { name: 'Tubruk', price: 15000 }
+ */
+```
+
+<p align="justify">Perhatikan nilai parameter yang diberikan pada require(). Parameter merupakan lokasi dari module target impor. Ingat! Jika Anda hendak mengimpor modul lokal (local module), selalu gunakan tanda ./ di awal alamatnya ya. Bila berkas coffee.js diletakkan di folder yang berbeda dengan app.js, contohnya memiliki struktur seperti ini:</p>
+
+```plantuml
+root folder:.
+├── app.js
+├── package.json
+└── lib
+    └── coffee.js
+```
+
+<p align="justify">Maka kita perlu mengimpornya dengan alamat:</p>
+
+```plantuml
+const coffee = require('./lib/coffee');
+```
+
+<p align="justify">Anda juga bisa menggunakan tanda ../ untuk keluar dari satu level folder. Ini berguna bila ingin mengimpor module yang berbeda hirarki seperti ini:</p>
+
+app.js
+
+```plantuml
+const coffee = require('../lib/coffee');
+```
+
+<p align="justify">Bila Anda menggunakan VSCode, Anda akan terbantu dengan fitur auto import yang disediakan. Melalui fitur tersebut Anda tidak perlu repot-repot menuliskan alamat modul secara manual. Tinggal tulis saja nilai yang Anda ingin impor, VSCode akan menangani penulisan fungsi require().</p>
