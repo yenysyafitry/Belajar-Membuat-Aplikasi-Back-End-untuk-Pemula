@@ -372,12 +372,12 @@ Object.getOwnPropertyNames(global);
 <p align="justify">
 Banyak sekali yah member dari global objek. Namun dilansir dari website Node.js, sebenarnya mereka hanya menambahkan beberapa objek saja. Objek tersebut dinamakan dengan ‘true globals’. </br></br>
 Berikut adalah daftarnya:</p>
-<ol><li>global : Global namespace. Member apa pun di dalam object ini dapat diakses pada cakupan global.</li>
+<ol align="justify"><li>global : Global namespace. Member apa pun di dalam object ini dapat diakses pada cakupan global.</li>
 <li>process : menyediakan interaksi dengan proses Node.js yang berjalan.</li>
 <li>console : menyediakan berbagai fungsionalitas STDIO.</li>
 <li>setTimeout, clearTimeout, setInterval, clearInterval.</ol>
-Ada juga objek yang merupakan ‘pseudo-globals’ atau objek global semu. Objek ini tidak terlihat bila dicetak menggunakan Object.getOwnPropertyName(global) sebab ia bukan member langsung dari objek global, melainkan diturunkan dari cakupan module. Karena pada Node.js semua berkas JavaScript adalah module [3], jadi pseudo-globals dapat diakses layaknya global objek.</br></br>
-Berikut adalah daftarnya:</p><ol><li>
+<p align="justify">Ada juga objek yang merupakan ‘pseudo-globals’ atau objek global semu. Objek ini tidak terlihat bila dicetak menggunakan Object.getOwnPropertyName(global) sebab ia bukan member langsung dari objek global, melainkan diturunkan dari cakupan module. Karena pada Node.js semua berkas JavaScript adalah module [3], jadi pseudo-globals dapat diakses layaknya global objek.</br></br>
+Berikut adalah daftarnya:</p><ol align="justify"><li>
 module : digunakan untuk sistem modularisasi pada Node.js.</li>
 <li>__filename : keyword untuk mendapatkan lokasi berkas JavaScript yang dieksekusi. Keyword ini tidak tersedia pada Node.js REPL.</li>
 <li>__dirname : keyword untuk mendapatkan root directory dari berkas JavaScript yang dieksekusi.</li>
